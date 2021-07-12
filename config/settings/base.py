@@ -8,11 +8,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
 """
 import os
 from datetime import timedelta
 from pathlib import Path
 import environ
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -22,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env = environ.Env()
 environ.Env.read_env(str(BASE_DIR / ".env"))
+sys.path.append(os.path.join(BASE_DIR, "apps"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -61,7 +64,7 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    'users',
+    'apps.users',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -78,7 +81,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -97,7 +100,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -216,3 +219,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR.parent, "media")
 IMPORT_EXPORT_USE_TRANSACTIONS = env('IMPORT_EXPORT_USE_TRANSACTIONS')
 IMPORT_EXPORT_SKIP_ADMIN_LOG = env('IMPORT_EXPORT_SKIP_ADMIN_LOG')
 WKHTMLTOPDF_PATH = env('WKHTMLTOPDF_PATH')
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

@@ -1,14 +1,14 @@
 from django.contrib.auth import get_user_model
 
-from core.views import BaseView
-from core.permissions import ViewDjangoModelPermission
+from apps.core.views import BaseViewSet
+from apps.core.permissions import ViewDjangoModelPermission
 from .filters import UserFilter
 from .serializers import UserSerializer
 
 User = get_user_model()
 
 
-class UserViewSet(BaseView):
+class UserViewSet(BaseViewSet):
     filter_class = UserFilter
     queryset = User.objects.filter()
     permission_classes = (ViewDjangoModelPermission,)
