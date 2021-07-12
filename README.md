@@ -13,6 +13,14 @@ Actualization: 12.7.2021
 ### Run application:
 `python manage.py runserver --settings=config.settings.local`
 
+### Best practies
+
+#### Wrapper which verifies pep8, pyflakes and circular complexity
+`$ flake8`
+
+#### Python code formatter:
+`$ flake8 black directory/`
+ 
 ## Production:
 
 ### Installation

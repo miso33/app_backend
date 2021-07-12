@@ -1,1 +1,1 @@
-from .views import BaseView, BaseListView, BaseRetrieveView, BasePagination,  BaseViewSet
+from .views import BaseView, BaseListView, BaseRetrieveView, BasePagination, BaseViewSet
